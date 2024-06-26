@@ -12,6 +12,7 @@ using namespace std;
 
 int main() {
     vector<int> array;
+    int s = 0;
     int e = 0;
     int i = 0;
 
@@ -28,6 +29,12 @@ int main() {
     array.erase(remove(array.begin(), array.end(), e), array.end());
     array.erase(array.begin()+i);
     sort(array.begin(), array.end());
+    array.resize(s, 0);
+
+    bool comp(vector<int> &a,vector<int> &b) {
+	    return a[1]<b[1];
+    }
+    sort(array.begin(), array.end(), comp);
 
     // heap
     priority_queue<int, vector<int>, greater<int>> minHeap;
@@ -35,13 +42,18 @@ int main() {
     minHeap.top();
     minHeap.push();
     minHeap.pop();
-
+    // heap (ListNode*)
     struct Compare {
         bool operator()(ListNode* behind, ListNode* ahead) {
             return ahead->val < behind->val;
         }
     };
     priority_queue<int, vector<int>, Compare> minHeap;
-    
+
+    // queue
+    queue<int> q;
+    q.front();
+    q.pop();
+    q.push();
 
 }
