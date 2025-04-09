@@ -88,39 +88,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<bool>> surrounded;
-
-    void solve(vector<vector<char>>& board) {
-        surrounded.resize(board.size(), vector<bool>(board[0].size(), true));
-        for (int r=0; r<board.size(); r++) {
-            if (board[r][0] == 'O') DFS(board, r, 0);
-            if (board[r][board[0].size()-1] == 'O') DFS(board, r, board[0].size()-1);
-        }
-        for (int c=0; c<board[0].size(); c++) {
-            if (board[0][c] == 'O') DFS(board, 0, c);
-            if (board[board.size()-1][c] == 'O') DFS(board, board.size()-1, c);
-        }
-        for (int r=0; r<board.size(); r++) {
-            for (int c=0; c<board[0].size(); c++) {
-                if (surrounded[r][c]) board[r][c] = 'X';
-            }
-        }
+    void solve() {
     }
 
-    void DFS(vector<vector<char>>& board, int r, int c) {
-        if (
-            r < 0 || r >= board.size() ||
-            c < 0 || c >= board[0].size() ||
-            board[r][c] == 'X' || 
-            !surrounded[r][c]
-        ) return;
-
-        surrounded[r][c] = false;
-        DFS(board, r+1, c);
-        DFS(board, r-1, c);
-        DFS(board, r, c+1);
-        DFS(board, r, c-1);
-    }
 };
 
 
@@ -146,23 +116,9 @@ int main() {
         cin >> r;
         int c;
         cin >> c;
-        vector<vector<char>> board(r, vector<char>(c));
-        for (int r=0; r<board.size(); r++) {
-            for (int c=0; c<board[0].size(); c++) {
-                cin >> board[r][c];
-                cout << board[r][c];
-            }
-            cout << endl;
-        }
-        // cout << endl;
+
         Solution* sol = new Solution();
-        sol->solve(board);
-        for (int r=0; r<board.size(); r++) {
-            for (int c=0; c<board[0].size(); c++) {
-                cout << board[r][c];
-            }
-        }
-        cout << endl;
+
     }
 
     return 0;
